@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> [working title]</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+		* {
+			margin:0;
+			padding:0;
+			border:1px solid black;
+		}
+		
+		body {
+			font-family: Arial;
+		}
+		
+		#clockVisualDiv, #clockButtonRow {
+			display:flex;
+		}
+		
+		#clockButtonRow {
+			justify-content: space-between;
+		}
+		
+		.buttonGroup {
+			width:20%;
+		}
+		
+		#clockVisualDiv {
+			width:30%;
+			justify-content: space-around;
+			font-family:Oswald;
+			font-size: 3rem;
+		}
+		
+		#timesetHeader h1 {
+			text-align:center;
+			font-size:1.5rem;
+		}
+		
+		#timesetHeader p {
+			font-size: 0.95rem;
+			color: cornflowerblue;
+			font-weight:600;
+			text-align: center;
+		}
+		
+		
+</style>
+</head>
+
+<body>
+	<main id="container">
+	<header id="timesetHeader">
+		<h1>Backtowork DotCom Timer</h1>
+		<p><span>for WWW Surfing Management</span></p>
+	</header>
+	<section id="view_timesetPage">
+	<div id="clockButtonRow">
+		<div class="buttonGroup">
+			<button id="minuteDecrementBtn" name="minuteDecrementBtn" class="decremenetBtn btn">-</button>
+			<button id="secondDecrementBtn" name="secondDecrementBtn" class="decremenetBtn btn">-</button>
+		</div>
+		<div id="clockVisualDiv">
+			<div id="minutesVisualDiv">00</div>
+			<div id="secondsVisualDiv">00</div>
+		</div>
+		<div class="buttonGroup">
+			<button id="minuteIncrementBtn" name="minuteIncrementBtn" class="incrementBtn btn">+</button>
+			<button id="secondIncrementBtn" name="secondIncrementBtn" class="incrementBtn btn">+</button>
+		</div>
+	</div>
+		
+	<div>
+		button id="startBtn" name="startBtn" class="startBtn btn"
+	</div>
+	</section>
+		
+		
+
+	<section id="view_timeactivePage">
+	</section>
+
+	</main>
+
+	<script> //Timer class
+		
+	document.querySelectorAll("button").forEach ((element) => {
+		element.addEventListener("click", (event) => {
+			event.preventDefault();
+			switch(element["id"]){
+				case "minuteIncrementBtn": 
+					document.getElementById("minutesVisualDiv").textContent += 1;	
+				case "minuteDecrementBtn":
+					document.getElementById("minutesVisualDiv").textContent -= 0;
+				case "secondDecrementBtn": 
+					document.getElementById("secondVisualDiv").textContent += 15;
+				case "secondIncrementBtn":
+					document.getElementById("secondsVisualDiv").textCotnent -=15;
+				}
+					
+
+				   }
+		}
+		
+	});	
+	</script>
+	class Timer {
+	constructor(minutes = 0, seconds) { //these presumably are going to be whole numbers
+		this.minutes = minutes
+		this.seconds = seconds
+		this.startTime = Date.now(); //returnsSeconds
+		this.timePassage = () => { 
+			let temp = new Date(); 
+			return temp.now() - this.startTime;  }
+			this.isRunning = false; 
+			this.finishedRunning = false;
+		    }//end constructor declaration
+
+	//my understanding of getters & setters is that they aren't concerning business logic as much as I thought they are supposed to, but facilitating value changes & retrievals
+	get isRunning(){ return this._isRunning }
+	set isRunning(x){ return this._isRunning }
+	get finishedRunning() { return this._finishedRunning}
+	set finishedRunning(x) { return this._finishedRunning}
+	get minutesStr() { this.minutes < 10 ? `0${this.minutes}`  : `${this.minutes}`  }
+	get secondsStr() { if (this.seconds%60===0) {return `00`; } else if (this.seconds % 60 < 10) { return `0${this.seconds}`}else { return this.seconds.toString(); }}
+
+	start() {
+
+		this.isRunning = true;
+		const timer = setInterval( () => {
+			this.seconds--;
+			doc.get("#inputSeconds").value = this.secondsStr;
+			if(this.seconds === 0 && this.minutes > 0 )
+				this.seconds = 59;
+			this.minutes--;
+			//put app logic here
+			doc.get("#inputMinutes").value = this.minutesStr;
+			if (this.seconds === 0 && this.minutes === 0) {
+				this.isRunning=false;
+				this.finishedRunning = true;
+				this.startTime = 0; 
+			//put app logic here
+			alert("time");
+
+			clearInterval(timer);}}, 1000); } //end of start() declaration
+
+			} //end of Timer declaration 
+		</script>
+		<script> //app.js
+		const startingSeconds = parseInt(document.getElementById("#inputSeconds").value);	//grab integer values from html table
+	//They are span tags
+
+
+document.getElementById("#submitButton").addEventListener("click", (e) =>{
+
+	e.preventDefault();
+	const startingMinutes = parseInt(document.getElementById("#inputMinutes").value);
+	
+	const timer = new Timer(startingMinutes,startingSeconds);
+	
+	timer.start();
+
+	while(timer.isRunning){
+
+		startingMinutes.disabled = true;
+		startingSeconds.disabled = true;
+		document.getElementById("#submitButton").disabled = true;
+		
+	}//
+		//account for somebody clicking the click button again
+	if(timer.finishedRunning) {
+		if(document.getElementById("toggleLoopInput").value){
+			//restart
+			//add an option to alter the time window 
+
+		} else {
+			startingMinutes.disabled = false;
+			startingSeconds.disabled = false;
+			startingMinutes.innertext == "00";
+			startingSeconds.innerText == "00";//making sure the html values reset 
+		}}
+		</script>
+	</body>
+	</html>
