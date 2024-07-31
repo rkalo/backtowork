@@ -1,0 +1,14 @@
+{ 
+
+	"name": "Backtowork - Pomodoro mods & other utilities for WWW time management",
+	"description":"Series of tools and options to help supplement your efforts spending less time online than you want, or desparately need to at all costs",
+	"version":"0.01",
+	"manifest_version": 3,
+	"author":"rolex",
+	"action": {
+		"default_popup": "index.html",
+		"default_title": "Backtowork - Pomodoro mods & other utilities for WWW time management"
+		
+	}
+
+}
